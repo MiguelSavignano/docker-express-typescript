@@ -1,9 +1,7 @@
 var express = require("express");
-var jwt = require("express-jwt");
 var app = express();
 
 const routes = require("./routes").routes;
-const config = require("./routes").config;
 
 const {
   getMockResponse,
@@ -21,10 +19,6 @@ const alowCorsMidleware = (req, res, next) => {
 
 app.use(alowCorsMidleware);
 app.use(express.json());
-if (config && config.jwt) {
-  const SECRET = process.env.JWT_SECRET || config.jwt_secret;
-  app.use(config.jwt_routes, jwt({ secret: SECRET }));
-}
 
 Object.entries(routes).map(([path, value]) => {
   const [httpMethod, urlPath] = resolveHttpMethodAndUrlPath(path);
