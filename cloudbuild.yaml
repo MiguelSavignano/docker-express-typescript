@@ -5,7 +5,10 @@ steps:
 
   - id: "Run unit test"
     name: "gcr.io/cloud-builders/docker"
-    args: ["run", "npm", "test"]
+    args: [
+      'run', 'gcr.io/$PROJECT_ID/docker-express-typescript',
+      'npm', 'test'
+    ]
 
   - id: "Build production docker image"
     name: "gcr.io/cloud-builders/docker"
