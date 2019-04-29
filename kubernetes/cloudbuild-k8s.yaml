@@ -3,6 +3,7 @@ steps:
     args:
       - apply
       - -f
+
       - kubernetes/workloads/nodejs-nginx.yaml
       - -f
       - kubernetes/services/nodejs-nginx.yaml
