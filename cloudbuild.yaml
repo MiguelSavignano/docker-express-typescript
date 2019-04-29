@@ -16,7 +16,9 @@ steps:
 
   - id: "Build nginx docker"
     name: "gcr.io/cloud-builders/docker"
-    args: ["build", "-f", "nginx/Dockerfile", "."]
+    args: ["build", "-f", "nginx/Dockerfile", "-t", "gcr.io/$PROJECT_ID/nginx", "."]
+
 
 images:
+  - gcr.io/$PROJECT_ID/nodejs-app
   - gcr.io/$PROJECT_ID/nodejs-app
