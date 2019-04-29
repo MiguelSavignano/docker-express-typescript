@@ -21,4 +21,4 @@ steps:
 
 images:
   - gcr.io/$PROJECT_ID/nodejs-app
-  - gcr.io/$PROJECT_ID/nodejs-app
+  - gcr.io/$PROJECT_ID/nginx
