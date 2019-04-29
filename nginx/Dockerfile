@@ -4,7 +4,7 @@ FROM nginx:1.13-alpine
 
 RUN apk upgrade --no-cache
 
-COPY nginx/nginx.conf /etc/nginx/conf.d
+COPY nginx/nginx.conf /etc/nginx/nginx.conf
 COPY nginx/conf.d /etc/nginx/conf.d
 
 WORKDIR /app
