@@ -1,0 +1,8 @@
+- name: "gcr.io/cloud-builders/kubectl"
+  args:
+    - apply
+    - -f
+    - docker/kubernetes/workloads/rails-nginx.yaml
+  env:
+    - "CLOUDSDK_COMPUTE_ZONE=us-central1-a"
+    - "CLOUDSDK_CONTAINER_CLUSTER=nodejs-cluster"
