@@ -1,0 +1,41 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: nodejs-nginx
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 80
+  selector:
+    app: nodejs-nginx
+status:
+  loadBalancer: {}
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  labels:
+    app: nodejs-nginx
+  name: nodejs-nginx
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nodejs-nginx
+  template:
+    metadata:
+      labels:
+        app: nodejs-nginx
+    spec:
+      containers:
+        - image: gcr.io/partifyapp-nodejs/nginx:latest
+          name: nginx
+        - image: gcr.io/partifyapp-nodejs/nodejs-app:latest
+          name: nodejs-app
+#          envFrom:
+#            - configMapRef:
+#                name: nodejs-app-config
+#            - secretRef:
+#                name: nodejs-app-secrets
