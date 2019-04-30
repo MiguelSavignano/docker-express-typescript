@@ -3,10 +3,7 @@ steps:
     args:
       - apply
       - -f
-
-      - kubernetes/workloads/nodejs-nginx.yaml
-      - -f
-      - kubernetes/services/nodejs-nginx.yaml
+      - kubernetes/nodejs-nginx.yaml
     env:
       - "CLOUDSDK_COMPUTE_ZONE=us-central1-a"
       - "CLOUDSDK_CONTAINER_CLUSTER=nodejs-cluster"
