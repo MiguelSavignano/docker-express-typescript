@@ -30,7 +30,7 @@ spec:
         app: nodejs-nginx
     spec:
       containers:
-        - image: gcr.io/partifyapp-nodejs/nginx:latest
+        - image: gcr.io/partifyapp-nodejs/nginx-react:latest
           name: nginx
         - image: gcr.io/partifyapp-nodejs/nodejs-app:latest
           name: nodejs-app
