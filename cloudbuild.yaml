@@ -1,5 +1,5 @@
 steps:
-  - id: "Build test docker image"
+  - id: "Build express-app test docker image"
     name: "gcr.io/cloud-builders/docker"
     args: ["build", "-t", "gcr.io/$PROJECT_ID/nodejs-app", "."]
 
@@ -10,14 +10,14 @@ steps:
       'npm', 'test'
     ]
 
-  - id: "Build production docker image"
+  - id: "Build express-app production docker image"
     name: "gcr.io/cloud-builders/docker"
     args: ["build", "-t", "gcr.io/$PROJECT_ID/nodejs-app", "."]
 
-  - id: "Build nginx docker"
+  - id: "Build nginx-react docker"
     name: "gcr.io/cloud-builders/docker"
-    args: ["build", "-f", "nginx/Dockerfile", "-t", "gcr.io/$PROJECT_ID/nginx", "."]
+    args: ["build", "-f", "frontend/Dockerfile", "-t", "gcr.io/$PROJECT_ID/nginx-react", "frontend"]
 
 images:
   - gcr.io/$PROJECT_ID/nodejs-app
-  - gcr.io/$PROJECT_ID/nginx
+  - gcr.io/$PROJECT_ID/nginx-react
