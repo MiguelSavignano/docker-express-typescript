@@ -31,7 +31,7 @@ spec:
     spec:
       containers:
         - image: gcr.io/partifyapp-nodejs/nginx-react:latest
-          name: nginx
+          name: nginx-react
         - image: gcr.io/partifyapp-nodejs/nodejs-app:latest
           name: nodejs-app
 #          envFrom:
