@@ -17,11 +17,9 @@ const alowCorsMidleware = (req, res, next) => {
 
 app.use(alowCorsMidleware);
 app.use(express.json());
-app.use(
-  "/api-docs",
-  swaggerUi.serve,
-  swaggerUi.setup(swaggerDocument, { explorer: true })
-);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-db.sequelize.sync();
+if (process.env.NODE_ENV !== "production") {
+  db.sequelize.sync();
+}
 module.exports = app;
