@@ -1,26 +1,74 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import matchSorter from "match-sorter";
 
-const App: React.FC = () => {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+// Import React Table
+import ReactTable from "react-table";
+import "react-table/react-table.css";
+
+const API_URL = process.env.API_URL || "http://localhost:3001";
+
+class App extends React.Component<{}, { data: any; loading: boolean }> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: [],
+      loading: true
+    };
+  }
+  componentDidMount() {
+    fetch(`${API_URL}/posts`).then(r =>
+      r.json().then(posts => {
+        console.log(posts);
+        this.setState({
+          data: posts,
+          loading: false
+        });
+      })
+    );
+  }
+  render() {
+    if (this.state.loading) return null;
+    const { data } = this.state;
+    return (
+      <div>
+        <ReactTable
+          data={data}
+          filterable
+          defaultFilterMethod={(filter, row) =>
+            String(row[filter.id]) === filter.value
+          }
+          columns={[
+            {
+              columns: [
+                {
+                  Header: "Title",
+                  accessor: "title",
+                  filterMethod: (filter, rows) =>
+                    matchSorter(rows, filter.value, { keys: ["body"] }),
+                  filterAll: true
+                },
+                {
+                  Header: "Body",
+                  accessor: "body",
+                  filterMethod: (filter, rows) =>
+                    matchSorter(rows, filter.value, { keys: ["body"] }),
+                  filterAll: true
+                },
+                {
+                  Header: "Userid",
+                  accessor: "userId"
+                }
+              ]
+            }
+          ]}
+          defaultPageSize={10}
+          className="-striped -highlight"
+        />
+        <br />
+      </div>
+    );
+  }
 }
 
 export default App;
