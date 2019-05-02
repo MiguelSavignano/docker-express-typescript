@@ -35,8 +35,8 @@ steps:
     - image
     - deployment
     - nodejs-nginx
-    - nodejs-app=gcr.io/$PROJECT_ID/nodejs-app
-    - nginx-react=gcr.io/$PROJECT_ID/nginx-react
+    - nodejs-app=gcr.io/$PROJECT_ID/nodejs-app:$SHORT_SHA
+    - nginx-react=gcr.io/$PROJECT_ID/nginx-react:$SHORT_SHA
     env:
       - "CLOUDSDK_COMPUTE_ZONE=us-central1-a"
       - "CLOUDSDK_CONTAINER_CLUSTER=nodejs-cluster"
