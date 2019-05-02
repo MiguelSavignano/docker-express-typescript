@@ -9,6 +9,7 @@ RUN npm ci
 
 COPY ./src ./src
 COPY ./public ./public
+ENV API_URL=/api
 RUN npm run build
 
 # FINAL STAGE
