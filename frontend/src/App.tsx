@@ -6,7 +6,7 @@ import matchSorter from "match-sorter";
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 
-const API_URL = process.env.API_URL || "http://localhost:3001";
+const API_URL = process.env.API_URL || "/api";
 
 class App extends React.Component<{}, { data: any; loading: boolean }> {
   constructor(props) {
