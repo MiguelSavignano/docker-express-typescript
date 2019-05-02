@@ -25,21 +25,20 @@ services:
   #   image: redis
   #    ports:
   #      - "6379:6379"
-  # db:
-  #   image: "mysql:5.7"
-  #   # ports:
-  #   #   - '3306:3306'
-  #   environment:
-  #     MYSQL_ROOT_PASSWORD: password
-  #     MYSQL_DATABASE: ebombona
-  #   volumes:
-  #     - mysql:/var/lib/mysql
-  #   healthcheck:
-  #     # test: ["CMD", "mysql" ,"-h", "db", "-P", "3306", "-u", "root", "-ppassword", "-e", "'SHOW databases'"]
-  #     test: ["CMD", "mysqladmin", "-h", "db", "-ppassword", "status"]
-  #     interval: 1s
-  #     timeout: 3s
-  #     retries: 30
+  db:
+    image: "mysql:5.7"
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    volumes:
+      - mysql:/var/lib/mysql
+    healthcheck:
+      # test: ["CMD", "mysql" ,"-h", "db", "-P", "3306", "-u", "root", "-ppassword", "-e", "'SHOW databases'"]
+      test: ["CMD", "mysqladmin", "-h", "db", "-ppassword", "status"]
+      interval: 1s
+      timeout: 3s
+      retries: 30
 
 volumes:
   mysql:
