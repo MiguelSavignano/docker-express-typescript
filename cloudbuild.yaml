@@ -18,6 +18,19 @@ steps:
     name: "gcr.io/cloud-builders/docker"
     args: ["build", "-f", "frontend/Dockerfile", "-t", "gcr.io/$PROJECT_ID/nginx-react", "frontend"]
 
+  - id: "Deploy kubernetes"
+    name: "gcr.io/cloud-builders/kubectl"
+    args:
+    - set
+    - image
+    - deployment
+    - nodejs-nginx
+    - nodejs-app=gcr.io/$PROJECT_ID/nodejs-app
+    - nginx-react=gcr.io/$PROJECT_ID/nginx-react
+    env:
+      - "CLOUDSDK_COMPUTE_ZONE=us-central1-a"
+      - "CLOUDSDK_CONTAINER_CLUSTER=nodejs-cluster"
+
 images:
   - gcr.io/$PROJECT_ID/nodejs-app
   - gcr.io/$PROJECT_ID/nginx-react
