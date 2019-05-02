@@ -17,5 +17,6 @@ COPY --from=build /app/build/ /usr/share/nginx/html/
 COPY nginx/nginx.conf /etc/nginx/nginx.conf
 COPY nginx/conf.d /etc/nginx/conf.d
 
-#ENV PORT=80
-#CMD /bin/bash -c "envsubst < /etc/nginx/conf.d/default.conf > /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'"
+ENV PORT=80
+ENV PROXY_PASS=http://127.0.0.1:3000
+CMD /bin/bash -c "envsubst '\$PORT \$PROXY_PASS' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'"
