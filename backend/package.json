@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start:prod": "node src/index.js",
     "start": "nodemon src/index.js",
     "test": "jest",
     "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand",
@@ -19,6 +20,7 @@
     "lodash": "^4.17.11",
     "mysql2": "^1.6.5",
     "sequelize": "^5.8.2",
+    "sequelize-cli": "^5.4.0",
     "swagger-ui-express": "^4.0.2",
     "yamljs": "^0.3.0"
   },
@@ -28,7 +30,6 @@
     "jest": "^23.6.0",
     "lodash.random": "^3.2.0",
     "lodash.times": "^4.3.2",
-    "nodemon": "^1.19.0",
-    "sequelize-cli": "^5.4.0"
+    "nodemon": "^1.19.0"
   }
 }

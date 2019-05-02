@@ -8,4 +8,4 @@ COPY package.json package-lock.json /app/
 RUN npm ci
 
 COPY . .
-CMD npm start
+CMD npx sequelize db:create && npx sequelize db:migrate && npm run start:prod
