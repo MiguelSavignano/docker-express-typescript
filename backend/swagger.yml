@@ -1,0 +1,31 @@
+swagger: "2.0"
+info:
+  description: Something about the API
+  version: "1.0.0"
+  title: Posts API
+basePath: "/"
+schemes:
+  - "http"
+paths:
+  /posts:
+    get:
+      summary: "GET posts"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "success"
+          schema:
+            $ref: "#/definitions/Posts"
+definitions:
+  Posts:
+    type: "object"
+    properties:
+      userId:
+        type: "number"
+      id:
+        type: "number"
+      title:
+        type: "string"
+      body:
+        type: "string"

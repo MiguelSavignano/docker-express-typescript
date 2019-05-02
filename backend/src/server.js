@@ -1,4 +1,8 @@
 var express = require("express");
+const swaggerUi = require("swagger-ui-express");
+const YAML = require("yamljs");
+const swaggerDocument = YAML.load(__dirname + "/../swagger.yml");
+
 var app = express();
 
 const routes = require("./routes").routes;
@@ -19,6 +23,11 @@ const alowCorsMidleware = (req, res, next) => {
 
 app.use(alowCorsMidleware);
 app.use(express.json());
+app.use(
+  "/api-docs",
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerDocument, { explorer: true })
+);
 
 Object.entries(routes).map(([path, value]) => {
   const [httpMethod, urlPath] = resolveHttpMethodAndUrlPath(path);

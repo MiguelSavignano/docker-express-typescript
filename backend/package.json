@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node src/server.js",
+    "start": "nodemon src/server.js",
     "test": "jest",
     "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand",
     "test:watch": "jest --watchAll"
@@ -16,7 +16,10 @@
     "express-jwt": "^5.3.1",
     "faker": "^4.1.0",
     "jsonwebtoken": "^8.4.0",
-    "lodash": "^4.17.11"
+    "lodash": "^4.17.11",
+    "nodemon": "^1.19.0",
+    "swagger-ui-express": "^4.0.2",
+    "yamljs": "^0.3.0"
   },
   "devDependencies": {
     "@types/faker": "^4.1.4",
