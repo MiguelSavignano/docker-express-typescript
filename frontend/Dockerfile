@@ -8,6 +8,7 @@ COPY package.json package-lock.json ./
 RUN npm ci
 
 COPY ./src ./src
+COPY ./tsconfig.json ./tsconfig.json
 COPY ./public ./public
 ENV API_URL=/api
 RUN npm run build
