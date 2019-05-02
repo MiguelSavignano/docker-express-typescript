@@ -1,7 +1,7 @@
 steps:
   - id: "Build express-app test docker image"
     name: "gcr.io/cloud-builders/docker"
-    args: ["build", "-t", "gcr.io/$PROJECT_ID/nodejs-app" "--build-arg", "NODE_ENV=development", "backend"]
+    args: ["build", "-t", "gcr.io/$PROJECT_ID/nodejs-app", "--build-arg", "NODE_ENV=development", "backend"]
 
   - id: "Run unit test"
     name: "gcr.io/cloud-builders/docker"
