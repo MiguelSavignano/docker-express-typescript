@@ -30,6 +30,9 @@
     "jest": "^23.6.0",
     "lodash.random": "^3.2.0",
     "lodash.times": "^4.3.2",
-    "nodemon": "^1.19.0"
+    "nodemon": "^1.19.0",
+    "sqlite3": "^4.0.6",
+    "super-request": "^1.2.0",
+    "supertest": "^4.0.2"
   }
 }

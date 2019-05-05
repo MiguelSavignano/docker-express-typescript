@@ -1,45 +1,42 @@
 const db = require("../models");
-const app = require("./server");
 
-app.get("/posts", (req, res) =>
-  db.post.findAll().then(result => res.json(result))
-);
+const PostsController = {
+  index: (req, res) => db.post.findAll().then(result => res.json(result)),
 
-app.get("/post/:id", (req, res) =>
-  db.post.findById(req.params.id).then(result => res.json(result))
-);
+  show: (req, res) =>
+    db.post.findById(req.params.id).then(result => res.json(result)),
 
-app.post("/posts", (req, res) => {
-  return db.post
-    .create({
-      title: req.body.title,
-      content: req.body.content
-    })
-    .then(result => res.json(result));
-});
-
-app.put("/post/:id", (req, res) =>
-  db.post
-    .update(
-      {
+  create: (req, res) =>
+    db.post
+      .create({
         title: req.body.title,
         content: req.body.content
-      },
-      {
+      })
+      .then(result => res.json(result)),
+
+  update: (req, res) =>
+    db.post
+      .update(
+        {
+          title: req.body.title,
+          content: req.body.content
+        },
+        {
+          where: {
+            id: req.params.id
+          }
+        }
+      )
+      .then(result => res.json(result)),
+
+  destroy: (req, res) =>
+    db.post
+      .destroy({
         where: {
           id: req.params.id
         }
-      }
-    )
-    .then(result => res.json(result))
-);
+      })
+      .then(result => res.json(result))
+};
 
-app.delete("/post/:id", (req, res) =>
-  db.post
-    .destroy({
-      where: {
-        id: req.params.id
-      }
-    })
-    .then(result => res.json(result))
-);
+module.exports = PostsController;
