@@ -9,14 +9,15 @@ app.get("/post/:id", (req, res) =>
   db.post.findById(req.params.id).then(result => res.json(result))
 );
 
-app.post("/post", (req, res) =>
-  db.post
+app.post("/posts", (req, res) => {
+  console.log(JSON.stringify(req.body));
+  return db.post
     .create({
       title: req.body.title,
       content: req.body.content
     })
-    .then(result => res.json(result))
-);
+    .then(result => res.json(result));
+});
 
 app.put("/post/:id", (req, res) =>
   db.post
