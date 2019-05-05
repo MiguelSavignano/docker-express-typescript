@@ -36,16 +36,19 @@ spec:
           image: gcr.io/partifyapp-nodejs/nodejs-app:latest
           envFrom:
             - configMapRef:
-              name: nodejs-app-config
+                name: nodejs-app-config
             - secretRef:
-              name: nodejs-app-secrets
+                name: nodejs-app-secrets
         - name: cloudsql-proxy
           image: gcr.io/cloudsql-docker/gce-proxy:1.11
-          command: ["/cloud_sql_proxy",
-                    "-instances=nodejs-app-database=tcp:3306",
-                    "-credential_file=/secrets/cloudsql/credentials.json"]
+          command:
+            [
+              "/cloud_sql_proxy",
+              "-instances=nodejs-app-database=tcp:3306",
+              "-credential_file=/secrets/cloudsql/credentials.json",
+            ]
           securityContext:
-            runAsUser: 2  # non-root user
+            runAsUser: 2 # non-root user
             allowPrivilegeEscalation: false
           volumeMounts:
             - name: cloudsql-instance-credentials
