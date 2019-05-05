@@ -30,12 +30,24 @@ spec:
         app: nodejs-nginx
     spec:
       containers:
-        - image: gcr.io/partifyapp-nodejs/nginx-react:latest
-          name: nginx-react
-        - image: gcr.io/partifyapp-nodejs/nodejs-app:latest
-          name: nodejs-app
-#          envFrom:
-#            - configMapRef:
-#                name: nodejs-app-config
-#            - secretRef:
-#                name: nodejs-app-secrets
+        - name: nginx-react
+          image: gcr.io/partifyapp-nodejs/nginx-react:latest
+        - name: nodejs-app
+          image: gcr.io/partifyapp-nodejs/nodejs-app:latest
+          envFrom:
+            - configMapRef:
+              name: nodejs-app-config
+            - secretRef:
+              name: nodejs-app-secrets
+        - name: cloudsql-proxy
+          image: gcr.io/cloudsql-docker/gce-proxy:1.11
+          command: ["/cloud_sql_proxy",
+                    "-instances=nodejs-app-database=tcp:3306",
+                    "-credential_file=/secrets/cloudsql/credentials.json"]
+          securityContext:
+            runAsUser: 2  # non-root user
+            allowPrivilegeEscalation: false
+          volumeMounts:
+            - name: cloudsql-instance-credentials
+              mountPath: /secrets/cloudsql
+              readOnly: true
