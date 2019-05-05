@@ -10,7 +10,6 @@ app.get("/post/:id", (req, res) =>
 );
 
 app.post("/posts", (req, res) => {
-  console.log(JSON.stringify(req.body));
   return db.post
     .create({
       title: req.body.title,
