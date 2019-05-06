@@ -44,7 +44,7 @@ spec:
           command:
             [
               "/cloud_sql_proxy",
-              "-instances=nodejs-app-database=tcp:3306",
+              "-instances=partifyapp-nodejs:us-central1:nodejs-app-database=tcp:3306",
               "-credential_file=/secrets/cloudsql/credentials.json",
             ]
           securityContext:
