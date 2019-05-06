@@ -1,12 +1,16 @@
 # Kubernetes GKE
 
-## Upload secrets
+## Enable SQL proxy
 
-- SQL cloud proxy service account file.
+- Enable SQL Api
+- Create service account with SQL role
+- Upload SQL cloud proxy service account file.
 
 ```
 kubectl create secret generic cloudsql-instance-credentials --from-file=credentials.json=./credentials.json
 ```
+
+## Upload secrets
 
 - Nodejs app secrets
 
