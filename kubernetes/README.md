@@ -15,9 +15,3 @@ kubectl create secret generic nodejs-app-secrets \
   --from-literal=DATABASE_USERNAME=root \
   --from-literal=DATABASE_PASSWORD=<DATABASE_PASSWORD>
 ```
-
-## Upload Configuration
-
-```
-kubectl create configmap nodejs-app-config --from-env-file=./kubernetes/nodejs-app.env
-```
