@@ -1,5 +1,16 @@
 steps:
-  - name: "gcr.io/cloud-builders/kubectl"
+  - id: "Upload configmap"
+    name: "gcr.io/cloud-builders/kubectl"
+    args:
+      - apply
+      - -f
+      - kubernetes/configmap.yaml
+    env:
+      - "CLOUDSDK_COMPUTE_ZONE=us-central1-a"
+      - "CLOUDSDK_CONTAINER_CLUSTER=nodejs-cluster"
+
+  - id: "Deploy deployment and services configs"
+    name: "gcr.io/cloud-builders/kubectl"
     args:
       - apply
       - -f

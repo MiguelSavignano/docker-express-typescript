@@ -7,6 +7,7 @@
 ```
 kubectl create secret generic cloudsql-instance-credentials --from-file=credentials.json=./credentials.json
 ```
+
 - Nodejs app secrets
 
 ```
@@ -16,6 +17,7 @@ kubectl create secret generic nodejs-app-secrets \
 ```
 
 ## Upload Configuration
+
 ```
-kubectl create configmap nodejs-app-config --from-literal=DATABASE_HOST=127.0.0.1
+kubectl create configmap nodejs-app-config --from-env-file=./kubernetes/nodejs-app.env
 ```
