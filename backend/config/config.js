@@ -1,3 +1,9 @@
+console.log("***************");
+console.log(process.env.DATABASE_USERNAME);
+console.log(process.env.DATABASE_PASSWORD);
+console.log(process.env.DATABASE_HOST);
+console.log("***************");
+
 module.exports = {
   development: {
     username: "root",
