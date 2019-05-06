@@ -18,7 +18,7 @@ const alowCorsMidleware = (req, res, next) => {
 
 app.use(alowCorsMidleware);
 app.use(express.json());
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use("/swagger-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use("/", routes);
 
 if (process.env.NODE_ENV !== "production") {
