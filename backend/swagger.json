@@ -1,0 +1,122 @@
+{
+	"definitions": {},
+	"info": {
+		"license": {
+			"name": "ISC"
+		},
+		"title": "mock-server",
+		"version": "1.0.0"
+	},
+	"paths": {
+		"/posts": {
+			"get": {
+				"operationId": "PostsIndex",
+				"produces": [
+					"text/html"
+				],
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"description": "",
+				"parameters": []
+			},
+			"post": {
+				"operationId": "PostsCreate",
+				"produces": [
+					"text/html"
+				],
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"description": "",
+				"consumes": [
+					"application/x-www-form-urlencoded"
+				],
+				"parameters": [
+					{
+						"description": "",
+						"in": "formData",
+						"name": "title",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"description": "",
+						"in": "formData",
+						"name": "content",
+						"required": true,
+						"type": "string"
+					}
+				]
+			}
+		},
+		"/posts/{id}": {
+			"get": {
+				"operationId": "PostsShow",
+				"produces": [
+					"text/html"
+				],
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"description": "",
+				"parameters": [
+					{
+						"description": "",
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"type": "number",
+						"format": "double"
+					}
+				]
+			},
+			"put": {
+				"operationId": "PostsUpdatte",
+				"produces": [
+					"text/html"
+				],
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"description": "",
+				"consumes": [
+					"application/x-www-form-urlencoded"
+				],
+				"parameters": [
+					{
+						"description": "",
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"description": "",
+						"in": "formData",
+						"name": "title",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"description": "",
+						"in": "formData",
+						"name": "content",
+						"required": true,
+						"type": "string"
+					}
+				]
+			}
+		}
+	},
+	"swagger": "2.0",
+	"securityDefinitions": {}
+}

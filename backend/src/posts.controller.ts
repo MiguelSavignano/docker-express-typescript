@@ -11,7 +11,7 @@ export class PostsController {
 
   @Path(":id")
   @GET
-  async show(@PathParam("id") id: string | number) {
+  async show(@PathParam("id") id: number) {
     return db.post.findByPk(id);
   }
 
@@ -26,7 +26,7 @@ export class PostsController {
   @Path(":id")
   @PUT
   async updatte(
-    @PathParam("id") id: string | number,
+    @PathParam("id") id: string,
     @FormParam("title") title: string,
     @FormParam("content") content: string
   ) {
