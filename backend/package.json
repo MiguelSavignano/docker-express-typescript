@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:prod": "node src/index.js",
-    "start": "nodemon src/index.js",
+    "start:prod": "node dist/index.js",
+    "start": "nodemon src/index.ts",
     "test": "jest",
     "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand",
     "test:watch": "jest --watchAll"
@@ -22,6 +22,9 @@
     "sequelize": "^5.8.2",
     "sequelize-cli": "^5.4.0",
     "swagger-ui-express": "^4.0.2",
+    "ts-node": "^8.1.0",
+    "typescript": "^3.4.5",
+    "typescript-rest": "^2.0.0",
     "yamljs": "^0.3.0"
   },
   "devDependencies": {
