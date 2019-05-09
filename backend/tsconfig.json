@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "module": "commonjs",
+    "target": "es2016",
+    "outDir": "dist",
+    "noUnusedParameters": false,
+    "strictNullChecks": true
+  },
+  "include": ["./src/**/*.ts"]
+}

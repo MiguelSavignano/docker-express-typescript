@@ -1,5 +1,5 @@
-const app = require("../app");
-const request = require("supertest");
+import app from "../src/app";
+import * as request from "supertest";
 
 describe("GET /posts", () => {
   it("respond with json", async () => {
