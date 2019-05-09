@@ -1,5 +1,5 @@
 import * as express from "express";
-import * as db from "../models";
+import sequelize from "./database/sequelize";
 import { Server } from "typescript-rest";
 import { PostsController } from "./posts.controller";
 const swaggerUi = require("swagger-ui-express");
@@ -26,7 +26,7 @@ app.use(express.json());
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 if (process.env.NODE_ENV !== "production") {
-  db.sequelize.sync();
+  sequelize.sync();
 }
 
 Server.buildServices(app, PostsController);

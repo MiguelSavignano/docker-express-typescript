@@ -1,18 +1,17 @@
-const db = require("../models");
-
 import { Path, GET, PathParam, PUT, POST, FormParam } from "typescript-rest";
+import { Post } from "./database/models/post";
 
 @Path("/posts")
 export class PostsController {
   @GET
   async index() {
-    return db.post.findAll();
+    return Post.findAll();
   }
 
   @Path(":id")
   @GET
   async show(@PathParam("id") id: number) {
-    return db.post.findByPk(id);
+    return Post.findByPk(id);
   }
 
   @POST
@@ -20,7 +19,7 @@ export class PostsController {
     @FormParam("title") title: string,
     @FormParam("content") content: string
   ) {
-    return db.post.create({ title, content });
+    return Post.create({ title, content });
   }
 
   @Path(":id")
@@ -30,6 +29,6 @@ export class PostsController {
     @FormParam("title") title: string,
     @FormParam("content") content: string
   ) {
-    return db.post.update({ title, content }, { where: { id } });
+    return Post.update({ title, content }, { where: { id } });
   }
 }
