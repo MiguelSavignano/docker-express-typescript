@@ -1,5 +1,5 @@
 import { Path, GET, PathParam, PUT, POST, FormParam } from "typescript-rest";
-import { Post } from "./database/models/post";
+import { Post } from "../database/models/post";
 
 @Path("/posts")
 export class PostsController {

@@ -1,7 +1,7 @@
 import * as express from "express";
 import sequelize from "./database/sequelize";
 import { Server } from "typescript-rest";
-import { PostsController } from "./posts.controller";
+import { PostsController } from "./controllers/PostsController";
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("../swagger.json");
 
