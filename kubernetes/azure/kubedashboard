@@ -1,0 +1,2 @@
+
+az aks browse --resource-group nodejs-app --name nodejs-app-cluster

@@ -1,5 +1,5 @@
 import * as express from "express";
-import sequelize from "./database/sequelize";
+// import sequelize from "./database/sequelize";
 import { Server } from "typescript-rest";
 import { PostsController } from "./controllers/PostsController";
 const swaggerUi = require("swagger-ui-express");
@@ -23,13 +23,16 @@ const alowCorsMidleware = (
 app.use(alowCorsMidleware);
 app.use(express.json());
 
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use("/swagger-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-if (process.env.NODE_ENV !== "production") {
-  sequelize.sync();
-}
+// if (process.env.NODE_ENV !== "production") {
+//   sequelize.sync();
+// }
 
-Server.buildServices(app, PostsController);
+// Server.buildServices(app, PostsController);
+app.get("/app", (req, res) => {
+  res.json({ ok: true });
+});
 
 app.use(function(err, req, res, next) {
   console.error(err.message);

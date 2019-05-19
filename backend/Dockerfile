@@ -19,4 +19,5 @@ COPY --from=build /app/ /app/
 # Install only production modules
 RUN npm ci
 
-CMD npx sequelize db:create && npx sequelize db:migrate && npm run start:prod
+# CMD npx sequelize db:create && npx sequelize db:migrate && npm run start:prod
+CMD npm run start:prod
