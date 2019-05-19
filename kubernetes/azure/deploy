@@ -1,11 +1,15 @@
 #!/bin/bash
+GIT_HASH=`git rev-parse --short HEAD`
 
-docker build -t partifyappnodejs.azurecr.io/nodejs-app backend
+docker build -t partifyappnodejs.azurecr.io/nodejs-app:$GIT_HASH backend
 docker push partifyappnodejs.azurecr.io/nodejs-app
 
-docker build -t partifyappnodejs.azurecr.io/nginx-react frontend
+docker build -t partifyappnodejs.azurecr.io/nginx-react:$GIT_HASH frontend
 docker push partifyappnodejs.azurecr.io/nginx-react
 
 kubectl set image deployment nodejs-nginx \
-  nodejs-app=partifyappnodejs.azurecr.io/nodejs-app \
-  nginx-react=partifyappnodejs.azurecr.io/nginx-react
+  nodejs-app=partifyappnodejs.azurecr.io/nodejs-app:$GIT_HASH \
+  nginx-react=partifyappnodejs.azurecr.io/nginx-react:$GIT_HASH
+
+
+# kubectl rollout status deployment.v1.apps/nodejs-nginx
