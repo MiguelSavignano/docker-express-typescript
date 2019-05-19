@@ -29,7 +29,7 @@ app.use("/swagger-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 //   sequelize.sync();
 // }
 
-// Server.buildServices(app, PostsController);
+Server.buildServices(app, PostsController);
 app.get("/app", (req, res) => {
   res.json({ ok: true });
 });

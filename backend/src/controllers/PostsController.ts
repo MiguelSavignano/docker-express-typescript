@@ -5,13 +5,20 @@ import { Post } from "../database/models/post";
 export class PostsController {
   @GET
   async index() {
-    return Post.findAll();
+    return [
+      {
+        title: "title example",
+        content: "content example",
+        body: "body example"
+      }
+    ];
+    // return Post.findAll();
   }
 
   @Path(":id")
   @GET
   async show(@PathParam("id") id: number) {
-    return Post.findByPk(id);
+    // return Post.findByPk(id);
   }
 
   @POST
@@ -19,7 +26,7 @@ export class PostsController {
     @FormParam("title") title: string,
     @FormParam("content") content: string
   ) {
-    return Post.create({ title, content });
+    // return Post.create({ title, content });
   }
 
   @Path(":id")
@@ -29,6 +36,6 @@ export class PostsController {
     @FormParam("title") title: string,
     @FormParam("content") content: string
   ) {
-    return Post.update({ title, content }, { where: { id } });
+    // return Post.update({ title, content }, { where: { id } });
   }
 }

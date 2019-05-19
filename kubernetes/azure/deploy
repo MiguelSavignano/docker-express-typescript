@@ -1,3 +1,11 @@
+#!/bin/bash
+
+docker build -t partifyappnodejs.azurecr.io/nodejs-app backend
+docker push partifyappnodejs.azurecr.io/nodejs-app
+
+docker build -t partifyappnodejs.azurecr.io/nginx-react frontend
+docker push partifyappnodejs.azurecr.io/nginx-react
+
 kubectl set image deployment nodejs-nginx \
   nodejs-app=partifyappnodejs.azurecr.io/nodejs-app \
   nginx-react=partifyappnodejs.azurecr.io/nginx-react
