@@ -64,7 +64,7 @@ az aks browse --resource-group nodejs-app --name nodejs-app-cluster
 ### Kubermetes apply
 
 ```
-kubectl apply -f kubernetes/nodejs-nginx-simple.yaml
+kubectl apply -f kubernetes/nodejs-nginx.yaml
 ```
 
 ## Upload secrets
