@@ -55,6 +55,8 @@ https://docs.microsoft.com/es-es/azure/aks/tutorial-kubernetes-deploy-cluster
 
 ### kubernetes dashboard
 
+https://docs.microsoft.com/es-es/azure/aks/kubernetes-dashboard
+
 ```
 az aks browse --resource-group nodejs-app --name nodejs-app-cluster
 ```

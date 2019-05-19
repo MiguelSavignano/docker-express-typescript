@@ -1,11 +1,14 @@
+// http://allenfang.github.io/react-bootstrap-table/index.html
 import React from "react";
 import "./App.css";
 import "react-table/react-table.css";
 import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
 import "react-bootstrap-table/dist/react-bootstrap-table-all.min.css";
 
-// const API_URL = process.env.API_URL || "/api";
-const API_URL = process.env.API_URL || "http://localhost:3000";
+const API_URL =
+  process.env.API_URL || process.env.NODE_ENV === "production"
+    ? "/api"
+    : "http://localhost:3000";
 
 class App extends React.Component<{}, { data: any; loading: boolean }> {
   constructor(props) {
