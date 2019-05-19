@@ -1,12 +1,42 @@
 import React from "react";
 import "./App.css";
-import matchSorter from "match-sorter";
-
-// Import React Table
-import ReactTable from "react-table";
 import "react-table/react-table.css";
+import { BootstrapTable, TableHeaderColumn } from "react-bootstrap-table";
+import "react-bootstrap-table/dist/react-bootstrap-table-all.min.css";
 
-const API_URL = process.env.API_URL || "/api";
+// const API_URL = process.env.API_URL || "/api";
+const API_URL = process.env.API_URL || "http://localhost:3000";
+
+function onAfterSaveCell(row, cellName, cellValue) {
+  console.log(row);
+  const post = row;
+
+  const url = `${API_URL}/posts/${post.id}`;
+  const data = { [cellName]: cellValue };
+
+  fetch(url, {
+    method: "put",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+    .then(res => res.json())
+    .then(response => console.log("Success:", response));
+}
+
+function onBeforeSaveCell(row, cellName, cellValue) {
+  // You can do any validation on here for editing value,
+  // return false for reject the editing
+  return true;
+}
+
+const cellEditProp = {
+  mode: "click",
+  blurToSave: true,
+  beforeSaveCell: onBeforeSaveCell, // a hook for before saving cell
+  afterSaveCell: onAfterSaveCell // a hook for after saving cell
+};
 
 class App extends React.Component<{}, { data: any; loading: boolean }> {
   constructor(props) {
@@ -19,7 +49,7 @@ class App extends React.Component<{}, { data: any; loading: boolean }> {
   componentDidMount() {
     fetch(`${API_URL}/posts`).then(r =>
       r.json().then(posts => {
-        console.log(posts);
+        console.log("fetch posts", posts);
         this.setState({
           data: posts,
           loading: false
@@ -31,41 +61,14 @@ class App extends React.Component<{}, { data: any; loading: boolean }> {
     if (this.state.loading) return null;
     const { data } = this.state;
     return (
-      <div>
-        <ReactTable
-          data={data}
-          filterable
-          defaultFilterMethod={(filter, row) =>
-            String(row[filter.id]) === filter.value
-          }
-          columns={[
-            {
-              columns: [
-                {
-                  Header: "Title",
-                  accessor: "title",
-                  filterMethod: (filter, rows) =>
-                    matchSorter(rows, filter.value, { keys: ["body"] }),
-                  filterAll: true
-                },
-                {
-                  Header: "Body",
-                  accessor: "body",
-                  filterMethod: (filter, rows) =>
-                    matchSorter(rows, filter.value, { keys: ["body"] }),
-                  filterAll: true
-                },
-                {
-                  Header: "Userid",
-                  accessor: "userId"
-                }
-              ]
-            }
-          ]}
-          defaultPageSize={10}
-          className="-striped -highlight"
-        />
-        <br />
+      <div className="app-container">
+        <BootstrapTable data={data} striped hover cellEdit={cellEditProp}>
+          <TableHeaderColumn isKey dataField="id">
+            ID
+          </TableHeaderColumn>
+          <TableHeaderColumn dataField="title">Title</TableHeaderColumn>
+          <TableHeaderColumn dataField="content">Content</TableHeaderColumn>
+        </BootstrapTable>
       </div>
     );
   }
