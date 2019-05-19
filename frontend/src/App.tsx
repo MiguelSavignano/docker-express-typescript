@@ -7,37 +7,6 @@ import "react-bootstrap-table/dist/react-bootstrap-table-all.min.css";
 // const API_URL = process.env.API_URL || "/api";
 const API_URL = process.env.API_URL || "http://localhost:3000";
 
-function onAfterSaveCell(row, cellName, cellValue) {
-  console.log(row);
-  const post = row;
-
-  const url = `${API_URL}/posts/${post.id}`;
-  const data = { [cellName]: cellValue };
-
-  fetch(url, {
-    method: "put",
-    body: JSON.stringify(data),
-    headers: {
-      "Content-Type": "application/json"
-    }
-  })
-    .then(res => res.json())
-    .then(response => console.log("Success:", response));
-}
-
-function onBeforeSaveCell(row, cellName, cellValue) {
-  // You can do any validation on here for editing value,
-  // return false for reject the editing
-  return true;
-}
-
-const cellEditProp = {
-  mode: "click",
-  blurToSave: true,
-  beforeSaveCell: onBeforeSaveCell, // a hook for before saving cell
-  afterSaveCell: onAfterSaveCell // a hook for after saving cell
-};
-
 class App extends React.Component<{}, { data: any; loading: boolean }> {
   constructor(props) {
     super(props);
@@ -46,6 +15,7 @@ class App extends React.Component<{}, { data: any; loading: boolean }> {
       loading: true
     };
   }
+
   componentDidMount() {
     fetch(`${API_URL}/posts`).then(r =>
       r.json().then(posts => {
@@ -57,13 +27,66 @@ class App extends React.Component<{}, { data: any; loading: boolean }> {
       })
     );
   }
+
+  onAfterSaveCell = (row, cellName, cellValue) => {
+    console.log(row);
+    const post = row;
+
+    const url = `${API_URL}/posts/${post.id}`;
+    const data = { [cellName]: cellValue };
+
+    fetch(url, {
+      method: "put",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then(res => res.json())
+      .then(response => console.log("Success:", response));
+  };
+
+  onAddRow = row => {
+    const url = `${API_URL}/posts`;
+    const data = { ...row, id: undefined };
+
+    fetch(url, {
+      method: "post",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then(r => {
+      r.json().then(response =>
+        this.setState({ data: [...this.state.data, { ...response }] })
+      );
+    });
+  };
+
   render() {
     if (this.state.loading) return null;
+    const options = {
+      onAddRow: this.onAddRow
+    };
+
+    const cellEditProp = {
+      mode: "click",
+      blurToSave: true,
+      afterSaveCell: this.onAfterSaveCell
+    };
+
     const { data } = this.state;
     return (
       <div className="app-container">
-        <BootstrapTable data={data} striped hover cellEdit={cellEditProp}>
-          <TableHeaderColumn isKey dataField="id">
+        <BootstrapTable
+          data={data}
+          striped
+          hover
+          options={options}
+          cellEdit={cellEditProp}
+          insertRow={true}
+        >
+          <TableHeaderColumn isKey autoValue dataField="id">
             ID
           </TableHeaderColumn>
           <TableHeaderColumn dataField="title">Title</TableHeaderColumn>
