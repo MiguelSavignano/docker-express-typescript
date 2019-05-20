@@ -1,0 +1,7 @@
+apiVersion: v1
+data:
+  DATABASE_HOST: nodejs-app-database.mysql.database.azure.com
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: nodejs-app-config

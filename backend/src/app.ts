@@ -13,23 +13,33 @@ const alowCorsMidleware = (
   next
 ) => {
   res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE, OPTIONS");
   res.header(
     "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
+    "Content-Type, Authorization, Content-Length, X-Requested-With"
   );
-  next();
+
+  if ("OPTIONS" === req.method) {
+    res.send(200);
+  } else {
+    //move on
+    next();
+  }
 };
 
 app.use(alowCorsMidleware);
 app.use(express.json());
 
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use("/swagger-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 if (process.env.NODE_ENV !== "production") {
   sequelize.sync();
 }
 
 Server.buildServices(app, PostsController);
+app.get("/app", (req, res) => {
+  res.json({ ok: true });
+});
 
 app.use(function(err, req, res, next) {
   console.error(err.message);
