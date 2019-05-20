@@ -77,4 +77,9 @@ kubectl create secret generic nodejs-app-secrets \
   --from-literal=DATABASE_PASSWORD=<DATABASE_PASSWORD>
 ```
 
-.
+Update secrets dowload as yaml and edit values in base64
+
+```
+kubectl get secrets nodejs-app-secrets -o yaml
+kubectl apply -f kubernetes/azure/secrets.yml
+```
