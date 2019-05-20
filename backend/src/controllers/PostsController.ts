@@ -1,4 +1,12 @@
-import { Path, GET, PathParam, PUT, POST, FormParam } from "typescript-rest";
+import {
+  Path,
+  GET,
+  PathParam,
+  PUT,
+  POST,
+  DELETE,
+  FormParam
+} from "typescript-rest";
 import { Post } from "../database/models/post";
 
 @Path("/posts")
@@ -30,5 +38,11 @@ export class PostsController {
     @FormParam("content") content: string
   ) {
     return Post.update({ title, content }, { where: { id } });
+  }
+
+  @Path(":id")
+  @DELETE
+  async destroy(@PathParam("id") id: string) {
+    return Post.destroy({ where: { id } });
   }
 }

@@ -32,10 +32,10 @@ class App extends React.Component<{}, { data: any; loading: boolean }> {
   }
 
   onAfterSaveCell = (row, cellName, cellValue) => {
-    console.log(row);
-    const post = row;
+    const item = row;
+    console.log(item);
 
-    const url = `${API_URL}/posts/${post.id}`;
+    const url = `${API_URL}/posts/${item.id}`;
     const data = { [cellName]: cellValue };
 
     fetch(url, {
@@ -47,6 +47,24 @@ class App extends React.Component<{}, { data: any; loading: boolean }> {
     })
       .then(res => res.json())
       .then(response => console.log("Success:", response));
+  };
+
+  onDeleteRow = rowsIds => {
+    console.log(rowsIds);
+    const fetchDeleteFncs = rowsIds.map(itemId => {
+      return new Promise((resolve, reject) => {
+        fetch(`${API_URL}/posts/${itemId}`, {
+          method: "DELETE"
+        });
+      });
+    });
+    Promise.all(fetchDeleteFncs);
+
+    const data = this.state.data.filter(item => {
+      return !rowsIds.includes(item.id);
+    });
+
+    this.setState({ data });
   };
 
   onAddRow = row => {
@@ -69,7 +87,8 @@ class App extends React.Component<{}, { data: any; loading: boolean }> {
   render() {
     if (this.state.loading) return null;
     const options = {
-      onAddRow: this.onAddRow
+      onAddRow: this.onAddRow,
+      onDeleteRow: this.onDeleteRow
     };
 
     const cellEditProp = {
@@ -87,7 +106,9 @@ class App extends React.Component<{}, { data: any; loading: boolean }> {
           hover
           options={options}
           cellEdit={cellEditProp}
-          insertRow={true}
+          insertRow
+          deleteRow
+          selectRow={{ mode: "checkbox" }}
         >
           <TableHeaderColumn isKey autoValue dataField="id">
             ID

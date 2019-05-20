@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "gen:swagger": "swaggerGen -c ./swaggerConfig.json",
     "start:prod": "node dist/index.js",
     "start": "nodemon src/index.ts",
     "build": "rm -fr ./dist && tsc",
