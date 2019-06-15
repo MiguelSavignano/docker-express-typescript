@@ -3,3 +3,5 @@ credentials-az.md
 dist
 node_modules
 secrets.yml
+junit.xml
+coverage
