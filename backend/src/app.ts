@@ -5,7 +5,7 @@ import { PostsController } from './controllers/PostsController';
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('../swagger.json');
 
-const app: express.Application = express();
+var app: express.Application = express();
 
 const alowCorsMidleware = (
   req: express.Request,
