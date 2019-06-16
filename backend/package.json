@@ -9,6 +9,7 @@
     "start": "nodemon src/index.ts",
     "build": "rm -fr ./dist && tsc",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
+    "lint:json": "tslint -c tslint.json -t json --out tslint-result.json 'src/**/*.ts'",
     "test": "jest",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand",
