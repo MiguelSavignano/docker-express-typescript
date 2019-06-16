@@ -1,5 +1,5 @@
-import { Model, DataTypes } from "sequelize";
-import sequelize from "../sequelize";
+import { Model, DataTypes } from 'sequelize';
+import sequelize from '../sequelize';
 
 export class Post extends Model {
   public id!: number;
@@ -16,16 +16,16 @@ Post.init(
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     title: DataTypes.STRING,
     content: {
       type: DataTypes.TEXT,
-      allowNull: false
-    }
+      allowNull: false,
+    },
   },
   {
     sequelize,
-    tableName: "posts"
-  }
+    tableName: 'posts',
+  },
 );
