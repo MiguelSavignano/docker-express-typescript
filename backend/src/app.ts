@@ -5,7 +5,7 @@ import { PostsController } from './controllers/PostsController';
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('../swagger.json');
 
-var app: express.Application = express();
+const app: express.Application = express();
 
 const alowCorsMidleware = (
   req: express.Request,
@@ -41,7 +41,7 @@ app.get('/app', (req, res) => {
   res.json({ ok: true });
 });
 
-app.use(function(err, req, res, next) {
+app.use((err, req, res, next) => {
   console.error(err.message);
   if (!err.statusCode) err.statusCode = 500;
   res.status(err.statusCode).send(err.message);
