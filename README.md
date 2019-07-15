@@ -27,7 +27,7 @@ Enviroments
 
 ### Docker images
 
-image: devmasx/react-nginx-typescript:latest
+image: devmasx/react-typescript-nginx-frontend:latest
 
 | Service | Version |
 | ------- | ------- |
