@@ -5,7 +5,7 @@ import {
   PUT,
   POST,
   DELETE,
-  FormParam,
+  FormParam
 } from 'typescript-rest';
 import { Post } from '../database/models/post';
 
@@ -25,7 +25,7 @@ export class PostsController {
   @POST
   async create(
     @FormParam('title') title: string,
-    @FormParam('content') content: string,
+    @FormParam('content') content: string
   ) {
     return Post.create({ title, content });
   }
@@ -35,7 +35,7 @@ export class PostsController {
   async updatte(
     @PathParam('id') id: string,
     @FormParam('title') title: string,
-    @FormParam('content') content: string,
+    @FormParam('content') content: string
   ) {
     return Post.update({ title, content }, { where: { id } });
   }

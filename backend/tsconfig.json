@@ -8,6 +8,7 @@
     "outDir": "dist",
     "checkJs": true,
     "allowJs": true,
+    "sourceMap": true,
     "noUnusedParameters": false,
     "strictNullChecks": true
   },
