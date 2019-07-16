@@ -2,6 +2,12 @@
 
 ## Nodejs app
 
+Architecture
+
+![react-express](docs/images/diagram.png)
+
+Single page aplication with rest api.
+
 ## Backend
 
 ### Docker images
@@ -12,6 +18,7 @@ image: devmasx/express-typescript-backend:latest
 | ------- | ------- |
 | Nodejs  | 10.13.0 |
 | Express | 4.16.4  |
+| Mysql   | 5.7     |
 
 Enviroments
 
