@@ -96,6 +96,10 @@
       "text",
       "cobertura"
     ],
+    "reporters": [
+      "default",
+      "jest-junit"
+    ],
     "setupFiles": [
       "react-app-polyfill/jsdom"
     ],
