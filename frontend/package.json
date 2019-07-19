@@ -36,6 +36,7 @@
     "is-wsl": "^1.1.0",
     "jest": "24.7.1",
     "jest-environment-jsdom-fourteen": "0.1.0",
+    "jest-junit": "^6.4.0",
     "jest-resolve": "24.7.1",
     "jest-watch-typeahead": "0.3.0",
     "match-sorter": "^3.0.0",
