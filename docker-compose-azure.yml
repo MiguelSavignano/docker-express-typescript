@@ -2,14 +2,14 @@ version: "3"
 
 services:
   app:
-    image: devmasx/express-typescript-backend:latest
+    image: nodejstypescriptdemo.azurecr.io/backend-express-typescript:latest
     environment:
       PORT: 3000
     ports:
       - 3000:3000
 
   front:
-    image: devmasx/react-typescript-nginx-frontend:latest
+    image: nodejstypescriptdemo.azurecr.io/frontend-react-typescript-nginx:latest
     environment:
       PROXY_PASS: http://app:3000
       API_URL: "/api"

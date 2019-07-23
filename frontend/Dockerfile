@@ -1,3 +1,4 @@
+# syntax = docker/dockerfile:1.0-experimental
 # BUILD STAGE
 FROM node:10-alpine as build
 
@@ -10,6 +11,9 @@ RUN npm ci
 COPY ./src ./src
 COPY ./tsconfig.json ./tsconfig.json
 COPY ./public ./public
+COPY ./scripts ./scripts
+COPY ./config ./config
+
 ENV API_URL=/api
 RUN npm run build
 
