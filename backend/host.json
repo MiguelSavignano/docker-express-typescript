@@ -1,0 +1,13 @@
+{
+  "version": "2.0",
+  "aggregator": {
+    "batchSize": 1000,
+    "flushTimeout": "00:00:30"
+  },
+  "functions": ["MyTimer"],
+  "functionTimeout": "00:05:00",
+  "managedDependency": {
+    "enabled": true
+  },
+  "watchDirectories": ["."]
+}

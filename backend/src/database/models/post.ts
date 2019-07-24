@@ -16,16 +16,16 @@ Post.init(
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      autoIncrement: true,
+      autoIncrement: true
     },
     title: DataTypes.STRING,
     content: {
       type: DataTypes.TEXT,
-      allowNull: false,
-    },
+      allowNull: false
+    }
   },
   {
     sequelize,
-    tableName: 'posts',
-  },
+    tableName: 'posts'
+  }
 );
