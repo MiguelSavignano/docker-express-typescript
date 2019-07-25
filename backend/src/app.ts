@@ -38,7 +38,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 Server.buildServices(app, PostsController);
 app.get('/app', (req, res) => {
-  res.json({ ok: true });
+  res.json({ ok: true, setting: Object.keys(process.env) });
 });
 
 app.use((err, req, res, next) => {
