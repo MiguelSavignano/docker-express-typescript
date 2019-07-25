@@ -2,6 +2,7 @@ import * as express from 'express';
 import sequelize from './database/sequelize';
 import { Server } from 'typescript-rest';
 import { PostsController } from './controllers/PostsController';
+import * as _ from 'lodash';
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('../swagger.json');
 
@@ -38,7 +39,18 @@ if (process.env.NODE_ENV !== 'production') {
 
 Server.buildServices(app, PostsController);
 app.get('/app', (req, res) => {
-  res.json({ ok: true, setting: Object.keys(process.env) });
+  res.json({
+    ok: true,
+    setting: _.pick(process.env, [
+      'WEBSITE_INSTANCE_ID',
+      'HOME',
+      'DATABASE_NAME',
+      'WEBSITE_HOSTNAME',
+      'WEBSITE_ROLE_INSTANCE_ID',
+      'COMPUTERNAME',
+      'NODE_ENV'
+    ])
+  });
 });
 
 app.use((err, req, res, next) => {
