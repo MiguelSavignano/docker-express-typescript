@@ -6,7 +6,7 @@
   "scripts": {
     "gen:swagger": "swaggerGen -c ./swaggerConfig.json",
     "swagger:docs-md": "swagger-markdown -i swagger.json",
-    "type:doc": "typedoc --out docs/typescript src/ --theme markdown --mode file",
+    "type:doc": "typedoc --out typescriptdoc src/ --theme markdown --mode file",
     "start:prod": "node dist/index.js",
     "start": "nodemon src/index.ts",
     "start:debug": "nodemon --config nodemon-debug.json",
