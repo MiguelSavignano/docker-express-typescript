@@ -6,6 +6,7 @@
   "scripts": {
     "gen:swagger": "swaggerGen -c ./swaggerConfig.json",
     "swagger:docs-md": "swagger-markdown -i swagger.json",
+    "type:doc": "typedoc --out docs/typescript src/ --theme markdown --mode file",
     "start:prod": "node dist/index.js",
     "start": "nodemon src/index.ts",
     "start:debug": "nodemon --config nodemon-debug.json",
@@ -48,6 +49,8 @@
     "ts-jest": "^24.0.2",
     "ts-node": "^8.1.0",
     "tslint": "^5.17.0",
+    "typedoc": "^0.15.0",
+    "typedoc-plugin-markdown": "^2.1.0",
     "typescript": "^3.4.5",
     "typescript-rest-swagger": "^0.1.0"
   }
